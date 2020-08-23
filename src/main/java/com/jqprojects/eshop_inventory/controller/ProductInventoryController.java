@@ -56,7 +56,7 @@ public class ProductInventoryController {
 	 */
 	@RequestMapping("/updateProductInventory")
 	public Response updateProductInventory(ProductInventory productInventory) {
-		log.debug("===========日志===========: 接收到更新商品库存的请求，商品id=[{}], 商品库存数量=[{}]" ,productInventory.getProductId(),productInventory.getInventoryCnt());
+		log.debug(" 接收到更新商品库存的请求，商品id=[{}], 商品库存数量=[{}]" ,productInventory.getProductId(),productInventory.getInventoryCnt());
 		Response response = null;
 		
 		try {
@@ -77,7 +77,7 @@ public class ProductInventoryController {
 	 */
 	@RequestMapping("/getProductInventory")
 	public ProductInventory getProductInventory(Integer productId) {
-		System.out.println("===========日志===========: 接收到一个商品库存的读请求，商品id=" + productId);  
+		log.debug(" 接收到一个商品库存的读请求，商品id=" + productId);
 		
 		ProductInventory productInventory = null;
 		
@@ -108,7 +108,7 @@ public class ProductInventoryController {
 				
 				// 如果读取到了结果，那么就返回
 				if(productInventory != null) {
-					System.out.println("===========日志===========: 在200ms内读取到了redis中的库存缓存，商品id=" + productInventory.getProductId() + ", 商品库存数量=" + productInventory.getInventoryCnt());  
+					log.debug(" 在200ms内读取到了redis中的库存缓存，商品id=" + productInventory.getProductId() + ", 商品库存数量=" + productInventory.getInventoryCnt());
 					return productInventory;
 				}
 				
